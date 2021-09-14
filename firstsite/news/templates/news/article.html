@@ -1,0 +1,17 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block title %}Новости на сайте{% endblock %}
+{% block content %}
+{% if popular_list %}
+<div class="features">
+<ul class="list-group">
+<li class="list-group-item active"><strong>Популярные публикации за неделю</strong></li>
+{% for el in art %}
+    <li class="list-group-item">
+    <a href="{% url 'article' el_id %}">{{ el_title }}</a>
+    </li>
+{% endfor %}
+</ul>
+    </div>
+{% endif %}
+{% endblock %}

@@ -1,0 +1,152 @@
+/* CSS Document */
+
+* { 
+	margin:0; padding:0;
+	border:0;
+}
+
+body{ background:url(../img/bg_top.jpg) top repeat-x #fff;
+	 border:0;
+	 font:12px Arial, Helvetica, sans-serif; color:#858585;
+	 line-height:18px;
+}
+
+
+/* ============================= main layout ====================== */
+
+a{ color:#e33000; text-decoration: underline}
+a:hover{ text-decoration: none}
+li{ list-style:none}
+h1{ font-size:24px;color:#6c6c6c; line-height:normal; font-weight:400; padding-top:22px; padding-bottom:11px;}
+h2{ color:#e33000; font-size:28px; line-height:normal; padding-top:17px;}
+h3{ color:#4d4d4d; font-size:24px; line-height:normal; margin-top:-7px; padding-bottom:17px;}
+p{ padding-bottom:18px;}
+img{ vertical-align:top}
+.under{ border-bottom:1px solid #eeecec; padding-bottom:23px; margin-bottom:24px}
+
+/* ============================= header ====================== */
+
+#date{ font-size:10px; color:#d1d1d1; padding-left:18px; background:url(../img/img_top.jpg) top left no-repeat; margin-top:18px; background-position:0 3px; font-weight:bold}
+#icons{ float:right; width:109px;}
+#icons li{ margin-left:4px; float:right; margin-top:17px;}
+#search{ width:222px; height:17px; background:url(../img/search.jpg) top right no-repeat; float:right; margin-top:14px; margin-right:7px; padding:7px 12px;}
+#search .input{ color:#fefefe; font:12px Tahoma, Geneva, sans-serif; width:190px;float:right; background:none}
+#search .submit{ width:30px; height:17px; cursor:pointer; float:right; background:none}
+#logo{ float:left; margin-top:33px;}
+#menu { float:right; margin-top:54px; padding-right:17px}
+#menu li { float:left;}
+#menu .line{ width:31px; height:49px; background:url(../img/menu_line.jpg) top left no-repeat; background-position:15px 0; display:block}
+#menu li a{ display:block; width:74px; color:#cacaca; font-size:14px; text-transform:uppercase; line-height: normal; padding-top:24px; background:url(../img/menu_off.jpg) top left no-repeat; height:25px; text-align:center; text-decoration:none; font-weight:400}
+#menu li a:hover, #menu #menu_active a{background:url(../img/menu_on.jpg) top left no-repeat; color:#fff; display:block; margin:0 -16px; width:106px; position:relative }
+.banner{ width:400px; padding:84px 0 0 25px; position:relative;}
+.banner .h1{ font-size:30px; font-weight:400; line-height:36px; color:#393e47;}
+.banner .h2{ font-size:36px; font-weight:400; line-height:36px; color:#999999;}
+.banner p{ padding-top:6px;}
+.banner a{ display:block; width:108px; line-height:40px; text-align:center; font-size:16px; text-decoration:none; color:#1e1e1e; text-transform:uppercase; background:url(./img/button_3.jpg) top left no-repeat}
+.banner a:hover{ color:#999999;}
+
+/* The Nivo Slider styles */
+#slider{ position:relative; width:980px; height:354px; z-index:8; left:0px; top:16px; overflow:hidden;}
+/* If an image is wrapped in a link */
+.nivoSlider a.nivo-imageLink {position:absolute;top:0px;left:0px;width:100%;height:100%;border:0;padding:0;	margin:0;z-index:60;display:none;}
+/* The slices in the Slider */
+.nivo-slice {display:block;	position:absolute;z-index:50;height:100%;}
+
+/* Direction nav styles (e.g. Next & Prev) */
+.nivo-directionNav a {	position:absolute; bottom:25px;	z-index:99;	cursor:pointer;text-indent:-5000px; width:5px; height:9px;  display:block;}
+.nivo-prevNav { left:36px; background:url(../img/marker_left.gif) 0 0 no-repeat}
+.nivo-prevNav:hover{ background-position:bottom}
+.nivo-nextNav { left:119px; background:url(../img/marker_right.gif) no-repeat}
+.nivo-nextNav:hover{ background-position:bottom}
+
+/* Control nav styles (e.g. 1,2,3...) */
+.nivo-controlNav{ position: absolute;z-index:99; left:51px; bottom:23px;}
+.nivo-controlNav a {position:relative;z-index:99;cursor:pointer; text-indent:-5000px; width:13px; height:13px; float:left; margin-right:2px; background:url(../img/buttons.gif) right 0 no-repeat}
+.nivo-controlNav a.active, .nivo-controlNav a:hover { background-position:left}
+
+/* Caption styles */
+.nivo-caption {position: relative; top:0px; left:10px; z-index:9; overflow:hidden;}
+.nivo-html-caption {}
+
+
+/* ============================= content ====================== */
+
+.pad_left1{ padding-left:54px;}
+.pad_left2{ padding-left:45px;}
+.pad_left3{ padding-left:85px;}
+.marg_right1{ margin-right:4px;}
+.marg_right2{ margin-right:20px;}
+.marg_right3{ margin-right:30px;}
+.marg_top1{ margin-top:13px;}
+.pad_bot1{ padding-bottom:13px}
+.pad_bot2{ padding-bottom:30px}
+
+.list1 li{ line-height:30px;}
+.list1 li a{ font-size:10px; text-transform:uppercase; font-weight:bold; padding-left:13px; background:url(../img/marker_1.jpg) top left no-repeat; background-position:0 4px;}
+.list2 li{ line-height:28px;}
+.list2 li a{ font-size:10px; text-transform:uppercase; color:#858585; text-decoration:none; padding-left:13px; background:url(../img/marker_1.jpg) top left no-repeat; background-position:0 3px;}
+.list2 li a:hover{ text-decoration:underline}
+.list3 li{ line-height:24px;}
+.list3 li a{ color:#858585; padding-left:13px; background:url(../img/marker_2.jpg) top left no-repeat; background-position:0 4px;}
+.list4 li{ line-height:28px;}
+.list4 li a{  color:#b8b7b7; text-decoration:none; padding-left:12px; background:url(../img/marker_3.jpg) top left no-repeat; background-position:0 4px;}
+.list4 li a:hover{ text-decoration:underline}
+
+.link1{ color:#e7e7e7; font-size:11px; text-decoration:none; line-height:21px; float:left; background:url(../img/button1_bg.jpg) top repeat-x;}
+.link1 span{ display:block; background:url(../img/button1_left.jpg) top left no-repeat;}
+.link1 span span{ display:block; background:url(../img/button1_right.jpg) top right no-repeat; padding:0 8px;}
+.link1:hover{ color:#e33000;}
+.link2 { color:#909090; font-size:11px; text-decoration:none; line-height:21px; float:left; background:url(../img/button2_bg.jpg) top repeat-x;}
+.link2 span{ display:block; background:url(../img/button2_left.jpg) top left no-repeat;}
+.link2 span span{ display:block; background:url(../img/button2_right.jpg) top right no-repeat; padding:0 8px;}
+.link2:hover{ color:#e33000;}
+
+
+.font1{ color:#e33000; font-weight:bold}
+
+.box_2{ width:232px; height:171px;}
+.box2_r{ background:url(../img/box2_bg.jpg) right repeat-y;}
+.box2_l{ background:url(../img/box2_bg.jpg) left repeat-y;}
+.box2_t{ background:url(../img/box2_bg.jpg) top repeat-x;}
+.box2_b{ background:url(../img/box2_bg.jpg) bottom repeat-x;}
+.box2_t_r{ background:url(../img/box2_top_right.jpg) top right no-repeat;}
+.box2_b_l{ background:url(../img/box2_bot_left.jpg) left bottom no-repeat;}
+.box2_t_l{ background:url(../img/box2_top_left.jpg) top left no-repeat;}
+.box2_b_r{ background:url(../img/box2_bot_right.jpg) bottom right no-repeat;}
+.box2{ padding:0 10px 0 20px; width:202px; height:171px}
+.box2 h1{ color:#6c6c6c; font-size:24px; text-transform:uppercase; padding:13px 0 0 36px;}
+#banner_1{ background:url(../img/img1_banner.jpg) top left no-repeat; background-position:0 10px;}
+#banner_2{ background:url(../img/img2_banner.jpg) top left no-repeat; background-position:0 10px;}
+#banner_3{ background:url(../img/img3_banner.jpg) top left no-repeat; background-position:0 10px;}
+.marker{ margin-top:-25px;}
+.box2 p{ padding-top:7px;}
+
+#box_1{ background:url(../img/box_1.jpg) top left no-repeat; width:221px; height:130px; padding:18px 13px 0 15px; margin-top:20px;}
+#box_1 h1{ font-size:21px; color:#2b2b2b; padding:0;}
+#box_1 form{ padding-top:11px; width:193px;}
+#box_1 form .input{ width:180px; padding:0 6px; font:12px Arial, Helvetica, sans-serif; color:#858585; background:none; margin-bottom:15px}
+#box_1 form .submit{ margin-top:0px; float:right; background:none; cursor:pointer; width:65px; height:26px; font:12px Arial, Helvetica, sans-serif; color:#fefefe;}
+#box_1 a{ color:#8b8b8b;}
+/* ============================= footer ====================== */
+
+#footer { color:#d8d8d8; padding-bottom:54px;}
+#footer a{ color:#d8d8d8; text-decoration:none}.
+#footer a:hover{ text-decoration:underline}.
+#footer h1{ color:#c6c6c6; font-size:18px;. padding:22px 0 10px 0;}
+#support{ float:right; width:500px; background:url(../img/img_bot.jpg) top right no-repeat; background-position:right 27px; padding:32px 0px 20px 0;}
+#support .h1{ color:#808080; font-size:13px;. text-transform:uppercase; padding-right:39px;}
+#support .h2{ color:#fff; font-size:18px;}.
+#support p{ padding-top:24px; padding-bott.om:5px;}
+#footer_menu{}.
+#footer_menu li{ float:left; padding-right:6px; padding-left:6px; background: url(../img/menu_footer.jpg) top right no-repeat; background-position: right 5px;}
+#footer_menu li a{ font-size:11px; color:#7c7c7c; text-transform:uppercase}
+#footer_menu l.i a:hover, #footer_menu #active a{ text-decoration:none; color:#e33000;}
+#footer_menu ..no_line{ background:none; padding:0}
+#footer_menu ..no_pad{ padding-left:0;}
+/* ============================= forms ============================= */
+
+#ContactForm {padding:9px 0 0 0; line-height:.18px;}
+#ContactFor.m a{ margin-right:17px; margin-left:5px;}
+#ContactForm .input {width:277px; height:19px; border:1px solid #d5d4d0; background:#fff; padding:0 5px; margin-bottom:13px;font:12px Arial, Helvetica, sans-serif; color:#858585; line-height:19px;}
+#ContactForm textarea {width:325px; height:123px; border:1px solid #d5d4d0; background:#fff; padding:0px 5px;margin-bottom:19px;font:12px Arial, Helvetica, sans-serif; color:#858585; float:left; line-height:19px;}
+.col-1{ width:294px; float:left; padding-right:55px;.}

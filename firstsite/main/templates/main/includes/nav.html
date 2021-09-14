@@ -1,0 +1,328 @@
+
+<input type="checkbox" id="nav-search" hidden>
+<nav class="navi">
+    <label style="visibility: hidden;" id="nav-search-x" for="nav-search" class=" nav-search-a nav-search" onclick><span class="input-group-text" id="topbar-addon"><span class="fas fa-search"></span></span></label>
+    <label for="nav-search" class="nav-search nav-search-x" onclick><span class="input-group-text" id="topbar-addon"><span class="fas fa-times"></span></span></label>
+    <ul class="ul-nav">
+        {% if user.is_authenticated %}
+        <a href="{% url 'profile' request.user.username %}"><li><i class="faso fas fa-user-circle"></i></li></a>
+        <a href="{% url 'home' %}"><li><i class="faso fas fa-calculator"></i></li></a>
+        <a href="{% url 'news_home' %}"><li><i class="faso fas fa-newspaper"></i></i></li></a>
+        <a href="{% url 'about' %}"><li><i class="faso fas fa-question"></i></li></a>
+        <a href=""><li><i class="faso fab fa-telegram-plane"></i></li></a>
+        <a href="{% url 'account_logout' %}"><li style="color: red !important;"><i  style="color: red !important;" class="faso fas fa-sign-out-alt"></i></li></a>
+        {% else %}
+        <a href="{% url 'account_login' %}"><li><i class="faso fas fa-sign-in-alt"></i></li></a>
+        <a href="{% url 'account_signup' %}"><li><i class="faso fas fa-user-plus"></i></li></a>
+        <a href="{% url 'home' %}"><li><i class="faso fas fa-calculator"></i></li></a>
+        <a href="{% url 'news_home' %}"><li><i class="faso fas fa-newspaper"></i></i></li></a>
+        <a href="{% url 'about' %}"><li><i class="faso fas fa-question"></i></li></a>
+        <a href=""><li><i class="faso fab fa-telegram-plane"></i></li></a>
+        {% endif %}
+    </ul>
+    <div class="languages-menu-aside" id="languages-menu-aside" style="visibility: hidden;">
+        <ul>
+            <li>
+                <a title="Русская версия сайта" href="#" class="ru-langa active-language">RU</a>
+            </li>
+            <li>
+                <a href="{% url 'home' %}" class="lang-aa" title="English version of web-site">ENG  </a>
+            </li>
+        </ul>
+    </div>
+    <a href="{% url 'news_add' %}"><p class="anews"><button class="btn btn-warning"><i class="fas fa-plus-circle"></i></i></button></p></a>
+</nav>
+    <form class="navbar-search form-inline d-flex search-n" id="navbar-search-main" action="{% url 'search' %}" method="get">
+        <div class="input-group input-group-merge search-bar">
+            <span class="input-group-text" id="topbar-addon"><span class="fas fa-search"></span></span>
+            <input type="text" class="form-control" id="topbarInputIconLeft" required name="q" placeholder="Search" aria-label="Search" aria-describedby="topbar-addon">
+        </div>
+    </form>
+
+<script>
+</script>
+<style>
+.navi {
+    /*  ширна произвольная, не стесняйтесь экспериментировать */
+    width: 80px;
+    color: white;
+    /* фиксируем и выставляем высоту панели на максимум */
+    height: 100%;
+    position: fixed;
+    top: 63px;
+    bottom: 0;
+    margin: 0;
+    /* сдвигаем (прячем) панель относительно левого края страницы */
+    /* внутренние отступы */
+    padding: 15px 20px;
+    /* плавный переход смещения панели */
+    -webkit-transition: left 0.3s;
+    -moz-transition: left 0.3s;
+    transition: left 0.3s;
+    /* определяем цвет фона панели */
+    background: #181818;
+        display: flex;
+}
+
+
+
+/**
+ * Кнопка переключения панели
+ * тег <label>
+ */
+
+.nav-search {
+    /* абсолютно позиционируем */
+    position: absolute;
+    margin-top: 0px;
+    /* относительно левого края панели */
+    left: 20px;
+    /* отступ от верхнего края панели */
+    top: 1em;
+    /* внутренние отступы */
+    padding: 0.1em;
+    /* определяем цвет фона переключателя
+     * чаще вчего в соответствии с цветом фона панели
+    */
+    background: #181818;
+    /* цвет текста */
+    color: #fff;
+    /* вид курсора */
+    cursor: pointer;
+    /* размер шрифта */
+    font-size: 1.5em;
+    line-height: 1;
+    /* анимируем цвет текста при наведении */
+    -webkit-transition: color .25s ease-in-out;
+    -moz-transition: color .25s ease-in-out;
+    transition: color .25s ease-in-out;
+}
+
+.nav-search:after {
+    text-decoration: none;
+}
+
+
+/* цвет текста при наведении */
+
+.nav-search:hover {
+    color: #f4f4f4;
+}
+
+
+/**
+ * Скрытый чекбокс (флажок)
+ * невидим и недоступен :)
+ * имя селектора атрибут флажка
+ */
+
+[id='nav-search'] {
+    position: absolute;
+    display: none;
+}
+
+
+/**
+ * изменение положения переключателя
+ * при просмотре на мобильных устройствах
+ * когда навигация раскрыта, распологаем внутри панели
+*/
+
+[id='nav-search']:checked ~ .navi > .nav-search {
+    left: auto;
+    right: 2px;
+    top: 1em;
+}
+
+
+/**
+ * Когда флажок установлен, открывается панель
+ * используем псевдокласс:checked
+ */
+
+[id='nav-search']:checked ~ .search-n {
+    visibility: visible !important;
+    overflow-y: auto;
+}
+
+/*
+ * изменение символа переключателя,
+ * привычный крестик (MULTIPLICATION X),
+ * вы можете испльзовать любой другой значок
+*/
+
+[id='nav-search']:checked ~ .navi > .nav-search-x{
+    visibility: visible !important;
+
+    text-decoration: none;
+    content: '\2715';
+}
+[id='nav-search']:checked ~ .navi > .nav-search{
+    visibility: hidden;
+    display: none;
+}
+
+
+body {
+    -webkit-animation: bugfix infinite 1s;
+}
+
+@-webkit-keyframes bugfix {
+    to {
+      padding: 0;
+    }
+}
+
+
+/**
+ * позаботьтимся о средних и маленьких экранах
+ * мобильных устройств
+ */
+
+@media screen and (min-width: 320px) {
+    html,
+    body {
+      margin: 0;
+      overflow-x: hidden;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    html,
+    body {
+      margin: 0;
+      overflow-x: hidden;
+    }
+    .navi {
+      width: 100%;
+      box-shadow: none
+    }
+}
+
+.navi > ul {
+    position: absolute;
+    top: 70px;
+    display: block;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.navi > ul > a > li {
+    font-size: 1.5em;
+    line-height: 2.5;
+    opacity: 0;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    -webkit-transition: opacity .5s .1s, -webkit-transform .5s .1s;
+    -moz-transition: opacity .5s .1s, -moz-transform .5s .1s;
+    -ms-transition: opacity .5s .1s, -ms-transform .5s .1s;
+    transition: opacity .5s .1s, transform .5s .1s;
+}
+
+.navi > ul > a > li {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    transform: translateX(0);
+}
+
+
+ * оформление ссылок пунктов меню
+ */
+
+.navi > ul > a > li {
+    display: inline-block;
+    position: relative;
+    padding: 0;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    font-size: 1.2em;
+    color: white;
+    width: 100%;
+    text-decoration: none;
+    /* плавный переход */
+    -webkit-transition: color .5s ease, padding .5s ease;
+    -moz-transition: color .5s ease, padding .5s ease;
+    transition: color .5s ease, padding .5s ease;
+}
+
+
+/**
+ * состояние ссылок меню при наведении
+ */
+
+.navi > ul > a > li:hover {
+    color: #FF7F00 !important;
+    padding-left: 15px;
+}
+.navi > ul > a > li:focus {
+    color: #FF7F00 !important;
+    padding-left: 15px;
+}
+
+
+/**
+ * линия подчеркивания ссылок меню
+ */
+
+.navi > ul > a > li:before {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    width: 100%;
+    -webkit-transition: width 0s ease;
+    transition: width 0s ease;
+}
+
+.navi > ul > a > li:after {
+    color: #FF7F00 !important;
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 1px;
+    width: 100%;
+    background: #3bc1a0;
+    -webkit-transition: width .5s ease;
+    transition: width .5s ease;
+}
+
+
+/**
+ * анимируем линию подчеркивания
+ * ссылок при наведении
+ */
+
+.navi > ul > a > li:hover:before {
+    width: 0%;
+    background: #3bc1a0;
+    -webkit-transition: width .5s ease;
+    transition: width .5s ease;
+}
+
+.navi > ul > a > li:hover:after {
+    width: 0%;
+    background: transparent;
+    -webkit-transition: width 0s ease;
+    transition: width 0s ease;
+}
+nav ul p{
+    color: #fff;
+    display: block;
+    margin-top: 20px;
+    transition: transform .5s ease;
+}
+nav ul p:hover, aside ul a:hover {
+    color: #eb5959;
+    text-decoration: none;
+    transform: scale(1.05);
+}
+</style>

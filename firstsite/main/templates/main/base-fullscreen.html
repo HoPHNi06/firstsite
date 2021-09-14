@@ -1,0 +1,76 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head> 
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<!-- Primary Meta Tags -->
+<title>
+    Django Dashboard Volt - {% block title %}{% endblock %} | AppSeed
+</title>
+
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="title" content="HoPHNi">
+<meta name="author" content="HoPHNi">
+<meta name="description" content="HoPHNi">
+<meta name="keywords" content="HoPHNi coder web-programming web programming" />
+<link rel="canonical" href="https://hophni.co">
+
+<!-- Open Graph / Facebook -->
+<meta property="og:type" content="website">
+<meta property="og:url" content="{% url 'home' %}">
+<meta property="og:title" content="HoPHNi">
+<meta property="og:description" content="HoPHNi">
+<meta property="og:image" content="HoPHNi">
+
+<!-- Twitter -->
+<meta property="twitter:card" content="summary_large_image">
+<meta property="twitter:url" content="https://HoPHNi.co">
+<meta property="twitter:title" content="HoPHNi">
+<meta property="twitter:description" content="HoPHNi">
+<meta property="twitter:image" content="HoPHNi">
+
+<!-- Favicon -->
+<link rel="apple-touch-icon" sizes="120x120" href="{% static 'main/icon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'main/icon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'main/icon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'main/icon/site.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'main/icon/safari-pinned-tab.svg' %}" color="#181818">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#181818">
+
+
+<!-- Fontawesome -->
+<link type="text/css" href="{% static 'user/vendor/@fortawesome/fontawesome-free/css/all.min.css' %}" rel="stylesheet">
+
+<!-- Notyf -->
+<link type="text/css" href="{% static 'user/vendor/notyf/notyf.min.css' %}" rel="stylesheet">
+
+<!-- Volt CSS -->
+<link type="text/css" href="{% static 'user/css/volt.css' %}" rel="stylesheet">
+
+    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+
+    <!-- Specific Page CSS goes HERE  -->
+    {% block stylesheets %}{% endblock stylesheets %}
+
+</head> 
+<body class="{% block body_class %}{% endblock body_class %}">
+
+    {% include 'main/includes/aside.html' %}
+    <style>
+    .nav {
+    /*  ширна произвольная, не стесняйтесь экспериментировать */
+    width: 280px;
+    }
+    </style>
+    {% block content %}{% endblock content %}
+
+    {% include 'main/includes/scripts.html' %}
+    
+    <!-- Specific Page JS goes HERE  -->
+    {% block javascripts %}{% endblock javascripts %}
+
+</body>
+</html>

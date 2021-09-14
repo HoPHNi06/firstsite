@@ -1,0 +1,83 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block title %}Новости на сайте{% endblock %}
+
+{% block css %}
+{% endblock css %}
+
+{% block content %}
+<style>
+
+[id='nav-toggle']:checked ~ main > .features{
+    left: 270px !important;
+}
+
+[id='nav-toggle']:checked ~ main > div > .h1-news{
+    margin-left: 100px !important;
+}
+@media (max-width: 861px) {
+[id='nav-toggle']:checked ~ main > .features{
+    left: 260px !important;
+}
+}
+@media (max-width: 700px) {
+    [id='nav-toggle']:checked ~ main > div > section > div > div > div > div > div > div > div > div > div > p{
+    padding-right: 50px;
+    }
+[id='nav-toggle']:checked ~ main > div > section > div > div > div > div > div > div > div > div > div > h3 > a{
+    padding-right: 50px;
+    }
+}
+
+
+
+</style>
+<link rel="stylesheet" href="{% static 'news/css/style.css' %}">
+<link rel="stylesheet" href="{%  static 'user/css/profile.css' %}">
+<div class ='news-home features' style="width: 70%; left: 20%;">
+    <h1 style="text-align: unset; margin-bottom: 20px;" class="h1-news">Новости/Статьи/Блог</h1>
+<section class="categories categories-grid spad">
+    <div class="categories__post">
+        <div class="container content">
+            <div class="categories__grid__post">
+                <div class="row">
+                    <div class="">
+                            {% for el in news %}
+                                            {% if news %}
+                        <div class="container-fluid categories__list__post__item  card card-profile shadow" style="padding-top: 20px; padding-bottom: 25px;border: 1px solid; border-color: black;">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="categories__post__item__pic set-bg d-flex" data-setbg="{{ el.photo.url }}" style="background-image: url(../../..{{ el.photo.url }});">
+                                        <div class="post__meta">
+                                            <h4>{{ el.date|date:"d" }}</h4>
+                                            <span>{{ el.date|date:"M" }}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <div class="categories__post__item__text">
+                                        <span class="post__label">Новость</span>
+                                        <h3><a href="{% url 'news_view' el.id %}">{{ el.title }}</a></h3>
+                                        <ul class="post__widget">
+                                            <li>by <span>{{ el.author }}</span></li>
+                                            <li><i class="fas fa-eye"></i>  {{ el.views }} views</li>
+                                            <li>20 Comments</li>
+                                        </ul>
+                                        <p>{{ el.anons|slice:":200" }}  ...</p>
+                                        <a class="read-more" href="{% url 'news_view' el.id %}" class="primary-btn">Read more</a>
+                                    </div>
+                                </div>
+                            </div>
+                        
+                        </div>
+                        {% endif %}
+                                    {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>
+
+{% endblock %}

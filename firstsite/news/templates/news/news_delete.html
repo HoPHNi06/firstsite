@@ -1,0 +1,15 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Удаление статьи{% endblock %}
+
+{% block content %}
+<div class ='features'>
+    <h1>Вы уверены?</h1>
+    <form method="post" style="margin-left: 20%; width: 500px; margin-top: 50px;">
+        {% csrf_token %}
+
+        <button type="submit" class="btn btn-success">Подтвердить удаление</button>
+        <a href="{% url 'news_home' %}" class="btn btn-info">Отменить удаление</a>
+    </form>
+</div>
+{% endblock %}

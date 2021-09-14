@@ -1,0 +1,14 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}{{ art.title }}{% endblock %}
+
+{% block content %}
+  <div class="features">
+      <h1>Результаты поиска по запросу {{ request.get.get_value }}</h1>
+      {% for news in object_list %}
+    <div class="alert alert-danger" style="float: left; width: 80%;margin: 2px; margin-text-align: left; background-color: white; ">
+            <a href="{% url 'news_view' news.id %}" style="text-decoration: none;"><h4  title="{{ news.anons }}" style="color: black;">{{ news.title }}</h4></a>
+    </div>
+  {% endfor %}
+      </div>
+{% endblock %}

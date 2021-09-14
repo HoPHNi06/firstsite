@@ -1,0 +1,118 @@
+{% extends 'main/layout.html' %}
+{% load static %}
+{% block title %}{{ art.title }}{% endblock %}
+
+
+{% block content %}
+<link rel="stylesheet" href="{%  static 'user/css/profile.css' %}">
+
+
+  <div class="main-content">
+    <!-- Top navbar -->
+    <!-- Header -->
+    <div class="headers pb-8 pt-5 pt-lg-8 align-items-center" style="left: 0px;min-height: 600px; background-image: url(../../..{{ art.photo.url }}); background-size: cover; background-position: center top;">
+      <!-- Mask -->
+      <span class="mask bg-gradient-default opacity-8" style="opacity: .79 !important;"></span>
+      <!-- Header container -->
+      <div class="container-fluid d-flex align-items-center">
+        <div class="row">
+          <div class="col-lg-7 col-md-10" style="top: 85px;">
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Page content -->
+    <div class="container-fluid mt--7">
+      <div class="row">
+        <div class="col-xl-12 mb-5 mb-xl-0">
+          <div class="card card-profile shadow" style="border-radius: 30px;">
+            <div class="row justify-content-center">
+              <div class="col-lg-3 order-lg-2">
+                  <div class="card-profile-image">
+                    <img src="{{ art.photo.url }}" style="padding: 10px; background-color: #181818;">
+                </div>
+              </div>
+            </div>
+            <div class="card-header text-center border-0 pt-8 pt-md-4 pb-0 pb-md-4">
+              <div class="d-flex justify-content-center" style="margin-top: 9vw; margin-bottom: -7vw;">
+              </div>
+            </div>
+            <div class="card-body pt-0 pt-md-4">
+              <div class="row">
+                <div class="col">
+                  <div class="card-profile-stats d-flex justify-content-center mt-md-5" style="margin-top: 80px !important;">
+                    <div>
+                      <span style="font-size: 1.1rem; display: block;">{{ art.author }}</span>
+                      <span class="description">Cоздатель</span>
+                    </div>
+                    <div>
+                      <span class="heading"><i class="fas fa-eye"></i>  {{ art.views }}</span>
+                      <span class="description">Просмотров</span>
+                    </div>
+                    <div>
+                      <span class="heading"><i class="fas fa-comment"></i> 89</span>
+                      <span class="description">Комментариев</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="text-center">
+              	<h4 class="font-weight-light">Название:</h4>
+                <h2>
+                  {{ art.title }}<span class="font-weight-light"></span>
+                </h2>
+
+          <div class="h5 mt-4">
+                  <i class="ni business_briefcase-24 mr-2"></i>Даты
+                </div>
+                <div>
+                  <i class="ni education_hat mr-2"></i>Дата создания: {{ art.date }}
+                </div>
+                <div>
+                  <i class="ni education_hat mr-2"></i>Последнее изменение: {{ art.updated_at }}
+                </div>
+                <hr class="my-4">
+                <div class="single-post__social__item">
+            <h5><span class="fab fa-share-square-o"></span>  Поделиться</h5>
+            <ul>
+              <li><a href="#"><span class="fab fa-telegram" aria-hidden="true"></span></a></li>
+              <li><a href="#"><span class="fab fa-facebook-f" aria-hidden="true"></span></a></li>
+              <li><a href="#"><span class="fab fa-twitter" aria-hidden="true"></span></a></li>
+              <li><a href="#"><span class="fab fa-instagram" aria-hidden="true"></span></a></li>
+              <li><a href="#"><span class="fab fa-youtube" aria-hidden="true"></span></a></li>
+            </ul>
+          </div>
+          {% if art.author == request.user %}
+                  <div class="author-edit">
+            <a class="btn author-update" href="{% url 'news_update' art.id %}">Изменить статью</a>
+            <a class="btn btn-danger" href="{% url 'news_delete' art.id %}">Удалить статью</a>
+          </div>
+          
+          {% endif %}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-xl-12 order-xl-1" style="margin-top: 30px;">
+          <div class="card bg-secondary shadow">
+            <div class="card-header bg-white border-0">
+              <div class="row align-items-center">
+                <div class="col-8">
+                  <h3 class="mb-0">Статья</h3>
+                </div>
+                <div class="col-4 text-right">
+                  <a href="#" class="btn btn-sm btn-primary">Настройки</a>
+                </div>
+              </div>
+            </div>
+              <div class="card-body" style="text-align: center;">
+                  <p>{{ art.full_text }}</p>
+              </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}

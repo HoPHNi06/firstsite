@@ -1,0 +1,143 @@
+{% extends "main/layout.html" %}
+{% load static %}
+{% load i18n %}
+{% block title %} Профиль {% endblock %}
+
+<!-- Specific Page CSS goes HERE  -->
+{% block stylesheets %}{% endblock stylesheets %}
+
+{% block content %}
+
+        <form action="{% url 'profile' profile.user.username %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="row content">
+                <div class="col-12 col-xl-8">
+                    <div class="card card-body bg-181818 border-light shadow-sm mb-4">
+                        <h2 class="h5 mb-4">Информация профиля</h2>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <div>
+                                    <label for="first_name">Имя</label>
+                                    <input type="text" name="first_name" placeholder="Ваша фамилия..." class="form-control" maxlength="40" required="" id="first_name" value="{{ profile.user.first_name }}">
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div>
+                                    <label for="last_name">Фамилия</label>
+                                    <input type="text" name="last_name" placeholder="Ваша фамилия..." class="form-control" maxlength="40" required="" id="last_name" value="{{ profile.user.last_name }}">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col-md-6 mb-3">
+                                <label for="birthday">День рождения</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><span class="far fa-calendar-alt"></span></span>
+                                    {{ form.birthday }}
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="gender">Ваш пол</label>
+                                <select name="gender" class="form-select mb-0" id="gender"
+                                        aria-label="Gender select example">
+                                    <option selected>Gender</option>
+                                    {% for key, value in profile.GENDER_CHOICES %}
+                                        <option value="{{ key }}"
+                                                {% if profile.gender == key %}selected{% endif %}>{{ value }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input name="email" class="form-control" id="email" type="email"
+                                           placeholder="name@company.com" value="{{ profile.user.email }}" readonly>
+                                </div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <div class="form-group">
+                                    <label for="phone">Номер телефона</label>
+                                    {{ form.phone }}
+                                </div>
+                            </div>
+                        </div>
+                        <h2 class="h5 my-4">Адрес</h2>
+                        <div class="row">
+                            <div class="col-sm-9 mb-3">
+                                <div class="form-group">
+                                    <label for="address">Ваш адрес</label>
+                                    {{ form.address }}
+                                </div>
+                            </div>
+                            <div class="col-sm-3 mb-3">
+                                <div class="form-group">
+                                    <label for="number">Номер дома</label>
+                                    {{ form.number }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-4 mb-3">
+                                <div class="form-group">
+                                    <label for="city">Город</label>
+                                    {{ form.city }}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="mt-3">
+                            <button type="submit" class="btn btn-primary">Сохранить</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-xl-4">
+                    <div class="row">
+                        <div class="col-12 mb-4">
+                            <div class="card border-light text-center p-0 bg-181818">
+                                <div class="profile-cover rounded-top"
+                                     data-background="{% static 'user/img/profile-cover.jpg' %}"></div>
+                                <div class="card-body pb-5">
+                                    <img src="{{ profile.get_avatar }}"
+                                         class="user-avatar large-avatar rounded-circle mx-auto mt-n7 mb-4"
+                                         alt="Neil Portrait">
+                                    <h4 class="h3">{{ profile.user.username }}</h4>
+                                    <h4 class="font-weight-normal">{{ profile.user.get_full_name }}</h4>
+                                    <h5 class="font-weight-normal">
+                                        {{ request.user.email }}
+                                    </h5>
+                                    <p class="text-gray mb-4">{{ profile.address|default:'' }}</p>
+                                    <a class="btn btn-sm" style="background-color: white;" href="#">Написать сообщение</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="card card-body bg-181818 border-light shadow-sm mb-4">
+                                <h2 class="h5 mb-4">Выберите новое фото профиля</h2>
+                                <div class="d-xl-flex align-items-center">
+                                    <div class="file-field">
+                                        <div class="d-flex justify-content-xl-center ml-xl-3">
+                                            <div class="d-flex">
+                                                <span class="icon icon-md">
+                                                    <span class="fas fa-paperclip mr-3"></span>
+                                                </span>
+                                                <input name="avatar" type="file">
+                                                <div class="d-md-block text-left">
+                                                    <div style="color: #FF7F00 !important;" class="font-weight-normal text-dark mb-1">Выберите фото</div>
+                                                    <div style="color: #FF7F00 !important;" class="text-gray small">JPG, GIF или PNG. Максимальный размер 800Kb</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+{% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}{% endblock javascripts %}

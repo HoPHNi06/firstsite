@@ -1,0 +1,370 @@
+{% load static %}
+
+<aside class="nav d-flex">
+    <div class="search-aside">
+            <form class="navbar-search form-inline" id="navbar-search-main" action="{% url 'search' %}" method="get">
+                <div class="input-group input-group-merge search-bar">
+                    <span class="input-group-text" id="topbar-addon"><span class="fas fa-search"></span></span>
+                    <input type="text" class="form-control" id="topbarInputIconLeft" required name="q" placeholder="Поиск" aria-label="Поиск" aria-describedby="topbar-addon">
+                </div>
+            </form>
+        </div>
+
+    <ul class="ul-aside">
+        {% if user.is_authenticated %}
+        <a href="{% url 'profile' request.user.username %}"><li><i class="cl-wh as-li fas fa-user-circle"></i>  Профиль</li></a>
+        <a href="{% url 'home' %}"><li><i class="cl-wh as-li fas fa-calculator"></i>  Калькулятор</li></a>
+        <a href="{% url 'news_home' %}"><li><i class="cl-wh as-li fas fa-newspaper"></i></i>  Новости</li></a>
+        <a href="{% url 'about' %}"><li><i class="cl-wh as-li fas fa-question"></i>  О разрабе</li></a>
+        <a href=""><li><i class="cl-wh as-li fab fa-telegram-plane"></i>  Портфолио</li></a>
+        <a href="{% url 'account_logout' %}"><li style="color: red !important;"><i style="color: red !important;" class="as-li fas fa-sign-out-alt"></i>  Выйти</li></a>
+        {% else %}
+        <a href="{% url 'account_login' %}"><li><i class="cl-wh as-li fas fa-sign-in-alt"></i>  Вход</li></a>
+        <a href="{% url 'account_signup' %}"><li><i class="cl-wh as-li fas fa-user-plus"></i>  Регистрация</li></a>
+        <a href="{% url 'home' %}"><li><i class="cl-wh as-li fas fa-calculator"></i> Калькулятор</li></a>
+        <a href="{% url 'news_home' %}"><li><i class="cl-wh as-li fas fa-newspaper"></i></i>  Новости</li></a>
+        <a href="{% url 'about' %}"><li><i class="cl-wh as-li fas fa-question"></i>  О разрабе</li></a>
+        <a href=""><li><i class="cl-wh as-li fab fa-telegram-plane"></i>  Портфолио</li></a>
+        {% endif %}
+    </ul>
+    <div class="languages-menu-aside">
+        <ul>
+            <li title="English version of web-site">
+                <a href="{% url 'home' %}" class="lang-aa">RU  </a>
+            </li>
+            <li title="Русская версия сайта">
+                <a href="#" class="ru-langa active-language">ENG</a>
+            </li>
+
+        </ul>
+    </div>
+    <a href="{% url 'news_add' %}"><p class="anews t-470"><button class="btn btn-warning"><i class="fas fa-plus-circle"></i></i>Добавить новость</button></p></a>
+</aside>
+<style>
+.nav {
+    /*  ширна произвольная, не стесняйтесь экспериментировать */
+    width: 270px;
+
+    /* фиксируем и выставляем высоту панели на максимум */
+    height: 100%;
+    position: fixed;
+    top: 63px;
+    bottom: 0;
+    margin: 0;
+    /* сдвигаем (прячем) панель относительно левого края страницы */
+    left: -100%;
+    /* внутренние отступы */
+    padding: 15px 20px;
+    /* плавный переход смещения панели */
+    -webkit-transition: left 0.3s;
+    -moz-transition: left 0.3s;
+    transition: left 0.3s;
+    /* определяем цвет фона панели */
+    background: #181818;
+        display: flex;
+}
+
+
+/**
+ * Кнопка переключения панели
+ * тег <label>
+ */
+
+.nav-toggle {
+    /* абсолютно позиционируем */
+    position: absolute;
+    margin-top: 0px;
+    /* относительно левого края панели */
+    left: 210px;
+    /* отступ от верхнего края панели */
+    top: 1em;
+    /* внутренние отступы */
+    padding: 0.1em;
+    /* определяем цвет фона переключателя
+     * чаще вчего в соответствии с цветом фона панели
+    */
+    z-index: 500;
+    background: #181818;
+    /* цвет текста */
+    color: #fff;
+    /* вид курсора */
+    cursor: pointer;
+    /* размер шрифта */
+    font-size: 1.5em;
+    line-height: 1;
+    /* анимируем цвет текста при наведении */
+    -webkit-transition: color .25s ease-in-out;
+    -moz-transition: color .25s ease-in-out;
+    transition: color .25s ease-in-out;
+}
+
+
+/* определяем текст кнопки
+ * символ Unicode (TRIGRAM FOR HEAVEN)
+*/
+
+.nav-toggle:after {
+    content: '\2630';
+    text-decoration: none;
+}
+
+
+/* цвет текста при наведении */
+
+.nav-toggle:hover {
+    color: #f4f4f4;
+}
+
+
+/**
+ * Скрытый чекбокс (флажок)
+ * невидим и недоступен :)
+ * имя селектора атрибут флажка
+ */
+
+[id='nav-toggle'] {
+    position: absolute;
+    display: none;
+}
+
+
+/**
+ * изменение положения переключателя
+ * при просмотре на мобильных устройствах
+ * когда навигация раскрыта, распологаем внутри панели
+*/
+
+[id='nav-toggle']:checked ~ .nav > .nav-toggle {
+    left: auto;
+    right: 2px;
+    top: 1em;
+}
+
+
+/**
+ * Когда флажок установлен, открывается панель
+ * используем псевдокласс:checked
+ */
+
+
+
+/*
+ * смещение контента страницы
+ * на размер ширины панели,
+ * фишка необязательная, на любителя
+*/
+
+[id='nav-toggle']:checked ~ main > .feature {
+    -webkit-transform: translateX(320px);
+    -moz-transform: translateX(320px);
+    transform: translateX(320px);
+}
+
+
+/*
+ * изменение символа переключателя,
+ * привычный крестик (MULTIPLICATION X),
+ * вы можете испльзовать любой другой значок
+*/
+
+[id='nav-toggle']:checked ~ .nav > .nav-toggle:after {
+    content: '\2715';
+}
+
+
+/**
+ * профиксим баг в Android <= 4.1.2
+ * см: http://timpietrusky.com/advanced-checkbox-hack
+ */
+
+body {
+    -webkit-animation: bugfix infinite 1s;
+}
+
+@-webkit-keyframes bugfix {
+    to {
+      padding: 0;
+    }
+}
+
+
+/**
+ * позаботьтимся о средних и маленьких экранах
+ * мобильных устройств
+ */
+
+@media screen and (min-width: 320px) {
+    html,
+    body {
+      margin: 0;
+      overflow-x: hidden;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    html,
+    body {
+      margin: 0;
+      overflow-x: hidden;
+    }
+    .nav {
+      width: 100%;
+      box-shadow: none
+    }
+}
+
+.nav > ul {
+    display: block;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.nav > ul > a > li {
+    font-size: 1.5em;
+    line-height: 2.5;
+    opacity: 0;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    -ms-transform: translateX(-50%);
+    transform: translateX(-50%);
+    -webkit-transition: opacity .5s .1s, -webkit-transform .5s .1s;
+    -moz-transition: opacity .5s .1s, -moz-transform .5s .1s;
+    -ms-transition: opacity .5s .1s, -ms-transform .5s .1s;
+    transition: opacity .5s .1s, transform .5s .1s;
+}
+
+[id='nav-toggle']:checked ~ .nav > ul > a > li {
+    opacity: 1;
+    -webkit-transform: translateX(0);
+    -moz-transform: translateX(0);
+    -ms-transform: translateX(0);
+    transform: translateX(0);
+}
+
+
+/* определяем интервалы появления пунктов меню */
+
+.nav > ul > a > li:nth-child(2) {
+    -webkit-transition: opacity .5s .2s, -webkit-transform .5s .2s;
+    transition: opacity .5s .2s, transform .5s .2s;
+}
+
+.nav > ul > a > li:nth-child(3) {
+    -webkit-transition: opacity .5s .3s, -webkit-transform .5s .3s;
+    transition: opacity .5s .3s, transform .5s .3s;
+}
+
+.nav > ul > a > li:nth-child(4) {
+    -webkit-transition: opacity .5s .4s, -webkit-transform .5s .4s;
+    transition: opacity .5s .4s, transform .5s .4s;
+}
+
+.nav > ul > a > li:nth-child(5) {
+    -webkit-transition: opacity .5s .5s, -webkit-transform .5s .5s;
+    transition: opacity .5s .5s, transform .5s .5s;
+}
+
+.nav > ul > a > li:nth-child(6) {
+    -webkit-transition: opacity .5s .6s, -webkit-transform .5s .6s;
+    transition: opacity .5s .6s, transform .5s .6s;
+}
+
+.nav > ul > a > li:nth-child(7) {
+    -webkit-transition: opacity .5s .7s, -webkit-transform .5s .7s;
+    transition: opacity .5s .7s, transform .5s .7s;
+}
+
+
+/**
+ * оформление ссылок пунктов меню
+ */
+
+.nav > ul > a > li {
+    display: inline-block;
+    position: relative;
+    padding: 0.088em;
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    font-size: 1.2em;
+    color: #dadada;
+    width: 100%;
+    text-decoration: none;
+    /* плавный переход */
+    -webkit-transition: color .5s ease, padding .5s ease;
+    -moz-transition: color .5s ease, padding .5s ease;
+    transition: color .5s ease, padding .5s ease;
+}
+
+
+/**
+ * состояние ссылок меню при наведении
+ */
+
+.nav > ul > a > li:hover,
+.nav > ul > a > li:focus {
+    color: white;
+    padding-left: 15px;
+}
+
+
+/**
+ * линия подчеркивания ссылок меню
+ */
+
+.nav > ul > a > li:before {
+    content: '';
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    height: 1px;
+    width: 100%;
+    -webkit-transition: width 0s ease;
+    transition: width 0s ease;
+}
+
+.nav > ul > a > li:after {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 1px;
+    width: 100%;
+    background: #3bc1a0;
+    -webkit-transition: width .5s ease;
+    transition: width .5s ease;
+}
+
+
+/**
+ * анимируем линию подчеркивания
+ * ссылок при наведении
+ */
+
+.nav > ul > a > li:hover:before {
+    width: 0%;
+    background: #3bc1a0;
+    -webkit-transition: width .5s ease;
+    transition: width .5s ease;
+}
+
+.nav > ul > a > li:hover:after {
+    width: 0%;
+    background: transparent;
+    -webkit-transition: width 0s ease;
+    transition: width 0s ease;
+}
+aside ul p{
+    color: #fff;
+    display: block;
+    margin-top: 20px;
+    transition: transform .5s ease;
+}
+aside ul p:hover, aside ul a:hover {
+    color: #eb5959;
+    text-decoration: none;
+    transform: scale(1.05);
+}
+</style>

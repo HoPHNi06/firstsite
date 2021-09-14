@@ -1,0 +1,122 @@
+<!doctype html>
+{% load static %}
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="theme-color" content="#181818">
+    <meta name="title" content="HoPHNi">
+    <meta name="author" content="HoPHNi">
+    <meta name="description" content="HoPHNi">
+    <meta name="keywords" content="HoPHNi coder web-programming web programming" />
+    <link rel="canonical" href="https://hophni.co">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{% url 'home' %}">
+    <meta property="og:title" content="HoPHNi">
+    <meta property="og:description" content="HoPHNi">
+    <meta property="og:image" content="HoPHNi">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://HoPHNi.co">
+    <meta property="twitter:title" content="HoPHNi">
+    <meta property="twitter:description" content="HoPHNi">
+    <meta property="twitter:image" content="HoPHNi">
+
+    <!--  Page CSS goes HERE  -->
+
+    <title> {% block title %} {% endblock %} | HoPHNi </title>
+    <base href="/">
+    <link href="{% static 'main/img/logo.ico' %}" rel="shortcut icon" type="image/x-icon"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.15/dist/css/bootstrap.min.css">
+    <link type="text/css" href="{% static 'user/css/volt.css' %}" rel="stylesheet">
+    <link rel="apple-touch-icon" sizes="120x120" href="{% static 'main/icon/apple-touch-icon.png' %}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{% static 'main/icon/favicon-32x32.png' %}">
+    <link rel="icon" type="image/png" sizes="16x16" href="{% static 'main/icon/favicon-16x16.png' %}">
+    <link rel="manifest" href="{% static 'main/icon/site.webmanifest' %}">
+    <link rel="mask-icon" href="{% static 'main/icon/safari-pinned-tab.svg' %}" color="#181818">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css">
+    <link type="text/css" href="{% static 'user/vendor/notyf/notyf.min.css' %}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'main/css/main.css' %}">
+    {% block css %}
+    {% endblock css %}
+</head>
+<body style="background-color: black;">
+<canvas id="c" style="background-color: rgb(0, 0, 0); position: absolute;"></canvas>
+<input type="checkbox" id="nav-toggle" hidden>
+<header class="header fixed-top" style="width: 100%;">
+    <div class="everything-header header">
+        <div class="header-logo" style="width: 300px;">
+            <a href="{% url 'home' %}" style="text-decoration: none; float: left;">
+                <img src="{% static 'main/img/logo.png' %}" alt="Лого" class="headerlogo">
+                <span class="logo">oPHNi</span>
+            </a>
+        </div>
+        <label for="nav-toggle" class="nav-toggle" onclick></label>
+        <div class="languages-menu">
+            <a href="{% url 'home' %}" class="lang-a">
+                <img src="{% static 'assets/img/flags/united-kingdom.svg' %}" alt="English language" title="English version of web-site" class="eng-lang">
+            </a>
+            <img src="{% static 'assets/img/flags/russia.svg' %}" alt="Русский язык" title="Русская версия сайта" class="ru-lang active-language">
+        </div>
+        <div class="d-flex search">
+            <form class="navbar-search form-inline" id="navbar-search-main" action="{% url 'search' %}" method="get">
+                <div class="input-group input-group-merge search-bar">
+                    <span class="input-group-text" id="topbar-addon"><span class="fas fa-search"></span></span>
+                    <input type="text" class="form-control" id="topbarInputIconLeft" required name="q" placeholder="Поиск" aria-label="Search" aria-describedby="topbar-addon">
+                </div>
+            </form>
+        </div>
+        <div class="header-menu">
+            {% if user.is_authenticated %}
+            <div class="header-profile nav-item dropdown" style="position: relative;">
+            <a class="nav-link pt-1 px-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="media d-flex align-items-center">
+                    <img class="user-avatar md-avatar rounded-circle" alt="Image placeholder" src="{{ request.user.profile.get_avatar }}">
+                    <div class="media-body ml-2 text-dark align-items-center ">
+                        <span class="mb-0 font-small font-weight-bold" style="color: white; top: -8px;">
+                            {{ request.user.username }}
+                        </span>
+                    </div>
+                </div>
+            </a>
+            <div class="dropdown_menu_my dropdown-menu dashboard-dropdown dropdown-menu-right mt-2">
+                <a class="dropdown-item font-weight-bold" href="{% url 'profile' request.user.username %}"><span class="fas fa-cog"></span>Профиль</a>
+                <div role="separator" class="dropdown-divider"></div>
+                <a class="dropdown-item font-weight-bold" href="{% url 'account_logout' %}">
+                <span class="fas fa-sign-out-alt text-danger"></span>Выход</a>
+            </div>
+            </div>
+            {% else %}
+            <div class="avd_div"><a class="bucn_4_6r fixed-top" href="{% url 'login' %}">Вход</a></div>
+            <div style="margin-top: -5px; margin-right: 0px;">или</div>
+            <div class="avd_div"><a class="bucn_4_6r fixed-top" href="{% url 'register' %}">Регистрация</a></div>
+            {% endif %}
+        </div>
+    </div>
+</header>
+{% include 'main/includes/nav.html' %}
+{% include 'main/includes/aside.html' %}
+
+
+<main class="main">
+{% block content %}
+
+{% endblock %}
+</main>
+
+
+    {% include 'main/includes/scripts.html' %}
+    <script type="text/javascript" src="{% static 'main/js/jquery.js' %}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.0/zepto.min.js"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/stats.js/r11/Stats.js"></script>
+
+    <script type="text/javascript" src="{% static 'main/js/main.js' %}"></script>
+
+
+</body>
+</html>

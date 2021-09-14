@@ -1,0 +1,50 @@
+{% extends 'main/layout.html' %}
+
+{% block title %}Главная страница{% endblock %}
+
+{% block content %}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap" rel="stylesheet">
+<div class="content raw">
+    <div>
+        <h5 class="h5 font-m">
+            HoPHNi
+        </h5>
+        <p class="con-p">Добро пожалавотать на наш <a class="a-con" href="/">САЙТ</a>!</p>
+        <p class="cont-p">Для полноценной функциональности сайта <br><a class="a-con f-a-con" style="margin-left: 142px;" href="{% url 'login' %}">Войдите</a> или <a class="a-con" href="{% url 'register' %}">Зарегестрируйтесь</a></p>
+    </div>
+</div>
+<hr style="background-color: #0f0; height: 3px;width: 100%; margin-left:79px; margin-top:calc(100px + 15vw + 4vw + 3vw + 150px);">
+<div class="сard content features" style="color: #FF7F00; margin-top: 100px; margin-bottom: 100px;">
+    <h1 style="margin-bottom: 10px;">Калькулятор</h1><br>
+    <form id="main-form" onsubmit="return checkForm(this)" method="post">
+        <label for="number"><b>Первое число:</b></label>
+        <input type="number" name="number" id="number" class="number"> <br><br>
+        <label for="number1"><b>Второе число:</b></label>
+        <input type="number" name="number1" id="number1" class="number1"><br><br>
+        <span><b>Выберите действие:</b></span><br>
+        <input type="radio" name="state" id="plus" class="Deystviye" value="Сложение">
+        <label for="plus" class="Deystviya" >Сложение</label>
+        <input type="radio" name="state" id="minus" class="Deystviye" value="Вычитание">
+        <label for="minus" class="Deystviya" >Вычитание</label><br>
+        <input type="radio" name="state" id="multiplication" class="Deystviye" value="Умножение">
+        <label for="multiplication" class="Deystviya" >Умножение</label>
+        <input type="radio" name="state" id="division" class="Deystviye" value="Деление">
+        <label for="division" class="Deystviya" >Деление</label><br>
+        <input type="radio" name="state" id="power" class="Deystviye" value="Возведение в степень">
+        <label for="power" class="Deystviya" >Возведение в степень</label><br>
+        <input type="radio" name="state" id="remainder" class="Deystviye" value="Остаток при делении">
+        <label for="remainder" class="Deystviya" >Остаток при делении</label>
+        <br>
+        <br>
+        <input class="btn btn-warning" type="submit" name="submit" value="Узнать результат" id="btnrezult">
+        <br><br>
+        <div id="error" style="color: red;"></div>
+        <span><b>Результат:</b></span>
+        <div class="btn btn-warning" id="answer"></div>
+    </form>
+
+</div>
+{% endblock %}
